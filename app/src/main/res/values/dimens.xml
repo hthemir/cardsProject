@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="defaultMargin">16dp</dimen>
+    <dimen name="headerText">18dp</dimen>
+    <dimen name="marginDefault">1dp</dimen>
+    <dimen name="widthDefault">60dp</dimen>
+</resources>

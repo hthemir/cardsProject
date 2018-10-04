@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="br.com.zup.multistatelayout.MultiStateLayout" />
+
+        <variable
+            name="viewModel"
+            type="com.example.rapisodo.livedataviewmodel.viewmodel.CardsViewModel" />
+    </data>
+
+    <br.com.zup.multistatelayout.MultiStateLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:msl_loadingLayout="@layout/ac_msl_loading_layout"
+        app:msl_state="@{viewModel.showLoading ? MultiStateLayout.State.LOADING : MultiStateLayout.State.CONTENT}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGray"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/widthDefault"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/defaultMargin"
+                        android:layout_marginTop="@dimen/defaultMargin"
+                        android:layout_marginRight="@dimen/defaultMargin"
+                        android:text="@string/search_header_filter_name"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/headerText" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/defaultMargin"
+                        android:layout_marginRight="@dimen/defaultMargin"
+                        android:background="@null"
+                        android:singleLine="true"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/widthDefault"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/defaultMargin"
+                        android:layout_marginTop="@dimen/defaultMargin"
+                        android:layout_marginRight="@dimen/defaultMargin"
+                        android:text="@string/search_header_filter_text"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/headerText" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/defaultMargin"
+                        android:layout_marginRight="@dimen/defaultMargin"
+                        android:background="@null"
+                        android:singleLine="true"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/defaultMargin"
+                    android:layout_marginTop="@dimen/defaultMargin"
+                    android:layout_marginRight="@dimen/defaultMargin"
+                    android:layout_marginBottom="@dimen/defaultMargin"
+                    android:text="@string/search_header_button_search" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvCards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_card" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </br.com.zup.multistatelayout.MultiStateLayout>
+</layout>
