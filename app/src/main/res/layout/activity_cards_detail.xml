@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.rapisodo.livedataviewmodel.viewmodel.CardsViewModel" />
+            type="com.example.rapisodo.livedataviewmodel.viewmodel.CardsDetailViewModel" />
     </data>
 
     <br.com.zup.multistatelayout.MultiStateLayout
@@ -18,92 +17,95 @@
         app:msl_loadingLayout="@layout/ac_msl_loading_layout"
         app:msl_state="@{viewModel.showLoading ? MultiStateLayout.State.LOADING : MultiStateLayout.State.CONTENT}">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorGray"
+                android:layout_height="match_parent"
+                android:background="@color/colorBlack"
                 android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/defaultImageHeight"
+                    android:layout_margin="@dimen/defaultMargin" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/defaultMargin"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="@dimen/widthDefault"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/defaultMargin"
-                        android:layout_marginTop="@dimen/defaultMargin"
                         android:layout_marginRight="@dimen/defaultMargin"
                         android:text="@string/name_field"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/headerText" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/tvName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/defaultMargin"
-                        android:layout_marginRight="@dimen/defaultMargin"
                         android:background="@null"
-                        android:singleLine="true"
-                        android:textColor="@color/colorWhite" />
+                        android:text="@{viewModel.mCard.name}"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/headerText" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/defaultMargin"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="@dimen/widthDefault"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/defaultMargin"
-                        android:layout_marginTop="@dimen/defaultMargin"
                         android:layout_marginRight="@dimen/defaultMargin"
                         android:text="@string/text_field"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/headerText" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/tvText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/defaultMargin"
-                        android:layout_marginRight="@dimen/defaultMargin"
                         android:background="@null"
-                        android:singleLine="true"
-                        android:textColor="@color/colorWhite" />
-
+                        android:text="@{viewModel.mCard.text}"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/headerText" />
                 </LinearLayout>
 
-                <Button
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/defaultMargin"
-                    android:layout_marginTop="@dimen/defaultMargin"
-                    android:layout_marginRight="@dimen/defaultMargin"
-                    android:layout_marginBottom="@dimen/defaultMargin"
-                    android:text="@string/search_field" />
+                    android:layout_margin="@dimen/defaultMargin"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="@dimen/widthDefault"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/defaultMargin"
+                        android:text="@string/type_field"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/headerText" />
 
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:text="@{viewModel.mCard.type}"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/headerText" />
+                </LinearLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvCards"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_card" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
+        </ScrollView>
     </br.com.zup.multistatelayout.MultiStateLayout>
+
 </layout>

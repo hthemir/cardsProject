@@ -4,4 +4,5 @@
     <dimen name="headerText">18dp</dimen>
     <dimen name="marginDefault">1dp</dimen>
     <dimen name="widthDefault">60dp</dimen>
+    <dimen name="defaultImageHeight">400dp</dimen>
 </resources>

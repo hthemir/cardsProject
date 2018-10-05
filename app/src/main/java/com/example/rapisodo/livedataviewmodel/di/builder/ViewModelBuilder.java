@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.rapisodo.livedataviewmodel.di.ViewModelKey;
+import com.example.rapisodo.livedataviewmodel.viewmodel.CardsDetailViewModel;
 import com.example.rapisodo.livedataviewmodel.viewmodel.CardsViewModel;
 import com.example.rapisodo.livedataviewmodel.viewmodel.ViewModelProviderFactory;
 
@@ -18,6 +19,11 @@ public abstract class ViewModelBuilder {
     @IntoMap
     @ViewModelKey(CardsViewModel.class)
     abstract ViewModel bindCardsViewModel(CardsViewModel cardsViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CardsDetailViewModel.class)
+    abstract ViewModel bindCardsDetailViewModel(CardsDetailViewModel cardsDetailViewModel);
 
     // ViewModel Factory
     @Binds

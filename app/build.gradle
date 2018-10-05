@@ -61,7 +61,6 @@ dependencies {
     implementation "com.squareup.okhttp:okhttp-urlconnection:$okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
 
-
     // View libs
     implementation "br.com.zup:multi-state-layout:$multiStateLayoutVersion"
     implementation "com.android.support:recyclerview-v7:27.1.1"

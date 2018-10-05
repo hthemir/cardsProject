@@ -15,9 +15,11 @@ import java.util.ArrayList;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private ArrayList<Card> mArrayList;
+    private SelectedCard mSelectedCard;
 
-    public CardAdapter(ArrayList<Card> mArrayList) {
+    public CardAdapter(ArrayList<Card> mArrayList, SelectedCard mSelectedCard) {
         this.mArrayList = mArrayList;
+        this.mSelectedCard =mSelectedCard;
     }
 
     @NonNull
@@ -32,6 +34,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.bind.tvName.setText(mArrayList.get(position).getName());
     }
 
+    public interface SelectedCard {
+        void setSelectedCard(Card card);
+    }
+
     @Override
     public int getItemCount() {
         return mArrayList.size();
@@ -44,6 +50,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             bind = DataBindingUtil.bind(itemView);
+
+            bind.tvName.setOnClickListener(v -> {
+                mSelectedCard.setSelectedCard(mArrayList.get(getLayoutPosition()));
+            });
         }
     }
 }

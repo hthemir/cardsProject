@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">LiveDataViewModel</string>
     <string name="default_error_message">Por favor, tente novamente mais tarde!</string>
-    <string name="search_header_title">Cartas</string>
-    <string name="search_header_filter_name">Nome</string>
-    <string name="search_header_filter_type">Tipo</string>
-    <string name="search_header_filter_text">Texto</string>
-    <string name="search_header_button_search">Pesquisar</string>
+    <string name="search_header_title">Cards</string>
+    <string name="name_field">Name</string>
+    <string name="type_field">Type</string>
+    <string name="text_field">Text</string>
+    <string name="search_field">Search</string>
 
 </resources>

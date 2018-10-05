@@ -51,7 +51,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Api provideLeadService(APIClient apiClient) {
+    Api provideApiService(APIClient apiClient) {
         return apiClient.getRetrofit().create(Api.class);
     }
 }

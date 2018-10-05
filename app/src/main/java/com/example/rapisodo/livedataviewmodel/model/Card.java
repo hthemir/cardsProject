@@ -2,8 +2,10 @@ package com.example.rapisodo.livedataviewmodel.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Card extends BaseObservable {
+public class Card extends BaseObservable implements Parcelable {
 
     private String name;
     private String cmc;
@@ -11,6 +13,20 @@ public class Card extends BaseObservable {
     private String text;
     private String power;
     private String toughness;
+    private String imageUrl;
+
+
+    public Card() {
+    }
+
+    @Bindable
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     @Bindable
     public String getName() {
@@ -65,6 +81,45 @@ public class Card extends BaseObservable {
     public void setToughness(String toughness) {
         this.toughness = toughness;
     }
+
+
+    //Parcealable
+
+    public Card(Parcel in) {
+        name = in.readString();
+        cmc = in.readString();
+        type = in.readString();
+        text = in.readString();
+        power = in.readString();
+        toughness = in.readString();
+        imageUrl = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(cmc);
+        dest.writeString(type);
+        dest.writeString(text);
+        dest.writeString(power);
+        dest.writeString(toughness);
+        dest.writeString(imageUrl);
+    }
+
+    public static final Parcelable.Creator<Card> CREATOR = new Parcelable.Creator<Card>() {
+        public Card createFromParcel(Parcel in) {
+            return new Card(in);
+        }
+
+        public Card[] newArray(int size) {
+            return new Card[size];
+        }
+    };
 
     //    "cards":[
 //    {
