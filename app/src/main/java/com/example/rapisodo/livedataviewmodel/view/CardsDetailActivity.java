@@ -36,7 +36,7 @@ public class CardsDetailActivity extends BaseActivity<ActivityCardsDetailBinding
         if (getIntent() != null && getIntent().getExtras() != null) {
             Card card = getIntent().getParcelableExtra("card");
 
-            getSupportActionBar().setTitle(card.getName()); //todo
+            getSupportActionBar().setTitle(card.getName());
 
             getViewModel().showLoading();
             getViewModel().initScreen(card);
@@ -46,9 +46,6 @@ public class CardsDetailActivity extends BaseActivity<ActivityCardsDetailBinding
                     bind.ivCard.setImageResource(R.drawable.default_card);
                 } else {
                     bind.ivCard.setImageBitmap(response.getContent());
-//                    bind.tvName.setText(card.getName());
-//                    bind.tvText.setText(card.getText());
-//                    bind.tvType.setText(card.getType());
                 }
             });
         }

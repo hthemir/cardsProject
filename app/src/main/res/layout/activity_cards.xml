@@ -51,6 +51,7 @@
                         android:layout_marginRight="@dimen/defaultMargin"
                         android:background="@null"
                         android:singleLine="true"
+                        android:text="@={viewModel.mCard.name}"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
 
@@ -76,6 +77,7 @@
                         android:layout_marginRight="@dimen/defaultMargin"
                         android:background="@null"
                         android:singleLine="true"
+                        android:text="@={viewModel.mCard.text}"
                         android:textColor="@color/colorWhite" />
 
                 </LinearLayout>
@@ -87,6 +89,7 @@
                     android:layout_marginTop="@dimen/defaultMargin"
                     android:layout_marginRight="@dimen/defaultMargin"
                     android:layout_marginBottom="@dimen/defaultMargin"
+                    android:onClick="@{() -> viewModel.onClickSearchCard()}"
                     android:text="@string/search_field" />
 
 

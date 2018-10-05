@@ -9,12 +9,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface Api {
 
     @GET("cards")
-    Call<Cards> getCards();
+    Call<Cards> getCards(@Query("name") String name, @Query("text") String text);
 //
 //    @GET
 //    Call<Response<ResponseBody>> getCardImage(@Url String fileUrl);

@@ -23,10 +23,10 @@ public class CardsRepository {
     public CardsRepository() {
     }
 
-    public LiveData<GenericResponse<Cards>> getCards() {
+    public LiveData<GenericResponse<Cards>> getCards(String name, String text) {
         final MutableLiveData<GenericResponse<Cards>> data = new MutableLiveData<>();
 
-        api.getCards().enqueue(new BaseCallback<Cards>() {
+        api.getCards(name, text).enqueue(new BaseCallback<Cards>() {
             @Override
             public void onSuccess(Cards response) {
                 GenericResponse<Cards> ret = new GenericResponse<>();
@@ -41,26 +41,6 @@ public class CardsRepository {
         });
         return data;
     }
-//
-//    public LiveData<GenericResponse<Bitmap>> getImage(String fileUrl) {
-//        final MutableLiveData<GenericResponse<Bitmap>> data = new MutableLiveData<>();
-//
-//        api.getCardImage(fileUrl).enqueue(new BaseCallback<Response<ResponseBody>>() {
-//            @Override
-//            public void onSuccess(Response<ResponseBody> response) {
-//                GenericResponse<Bitmap> ret = new GenericResponse<>();
-//                ret.setContent(BitmapFactory.decodeStream(response.body().byteStream()));
-//                data.setValue(ret);
-//            }
-//
-//            @Override
-//            public void onError(GenericResponse error) {
-//                data.setValue(error);
-//            }
-//        });
-//        return data;
-//    }
-
 
     public LiveData<GenericResponse<Bitmap>> getImage(String fileUrl) {
         final MutableLiveData<GenericResponse<Bitmap>> data = new MutableLiveData<>();
