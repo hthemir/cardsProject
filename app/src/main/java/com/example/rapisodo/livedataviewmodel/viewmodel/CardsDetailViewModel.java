@@ -3,11 +3,10 @@ package com.example.rapisodo.livedataviewmodel.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Transformations;
-import android.databinding.ObservableField;
 import android.graphics.Bitmap;
-import android.media.Image;
 
 import com.example.rapisodo.livedataviewmodel.model.Card;
+import com.example.rapisodo.livedataviewmodel.model.ForeignNames;
 import com.example.rapisodo.livedataviewmodel.repository.CardsRepository;
 import com.example.rapisodo.livedataviewmodel.service.GenericResponse;
 
@@ -25,11 +24,29 @@ public class CardsDetailViewModel extends BaseViewModel<CardsDetailViewModel.Nav
 
     public void initScreen(Card card) {
         mCard = card;
-        mediatorLiveData.addSource(getCardImage(card.getImageUrl()), input -> {
+        mediatorLiveData.addSource(getCardImage(getImageUrl(card)), input -> {
             if (input != null && input.getContent() != null) {
                 mediatorLiveData.setValue(input);
             }
         });
+    }
+
+    private String getImageUrl(Card card) {
+        String imageUrl = getBrazilianImageUrl(card);
+        return imageUrl != null ? imageUrl : card.getImageUrl();
+    }
+
+    private String getBrazilianImageUrl(Card card) {
+        if (card.getForeignNames() != null) {
+            for (ForeignNames f : card.getForeignNames()) {
+                if (f.getLanguage().equals("Portuguese (Brazil)")) {
+                    return f.getImageUrl();
+                }
+            }
+            return null;
+        } else {
+            return null;
+        }
     }
 
     public LiveData<GenericResponse<Bitmap>> getCardImage(String fileUrl) {

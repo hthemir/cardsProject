@@ -5,6 +5,9 @@ import android.databinding.Bindable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Card extends BaseObservable implements Parcelable {
 
     private String name;
@@ -14,7 +17,16 @@ public class Card extends BaseObservable implements Parcelable {
     private String power;
     private String toughness;
     private String imageUrl;
+    private List<ForeignNames> foreignNames;
 
+    @Bindable
+    public List<ForeignNames> getForeignNames() {
+        return foreignNames;
+    }
+
+    public void setForeignNames(List<ForeignNames> foreignNames) {
+        this.foreignNames = foreignNames;
+    }
 
     public Card() {
     }
@@ -93,6 +105,12 @@ public class Card extends BaseObservable implements Parcelable {
         power = in.readString();
         toughness = in.readString();
         imageUrl = in.readString();
+        if (in.readByte() == 0x01) {
+            foreignNames = new ArrayList<ForeignNames>();
+            in.readList(foreignNames, ForeignNames.class.getClassLoader());
+        } else {
+            foreignNames = null;
+        }
     }
 
     @Override
@@ -109,6 +127,12 @@ public class Card extends BaseObservable implements Parcelable {
         dest.writeString(power);
         dest.writeString(toughness);
         dest.writeString(imageUrl);
+        if (foreignNames == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(foreignNames);
+        }
     }
 
     public static final Parcelable.Creator<Card> CREATOR = new Parcelable.Creator<Card>() {
